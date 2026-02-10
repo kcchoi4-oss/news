@@ -5,7 +5,7 @@ from google.genai import types
 # 앱 디자인 설정
 st.set_page_config(page_title="해외 이슈 검색기", layout="wide")
 st.title("🌐 나만의 해외 이슈 검색기")
-st.caption("AI 공공정책 연구를 위한 실시간 해외 뉴스 요약 도구")
+st.caption("KOSAC 사업 기획을 위한 실시간 해외 뉴스 요약 도구")
 
 # 비밀 설정(Secrets)에서 키를 가져오고, 없으면 입력창을 띄웁니다.
 if "GEMINI_API_KEY" in st.secrets:
@@ -42,4 +42,5 @@ import ssl # 추가!
 # 🌟 SSL 보안 인증서 확인을 건너뛰는 마법의 코드
 ssl._create_default_https_context = ssl._create_unverified_context
 os.environ['CURL_CA_BUNDLE'] = ''
+
 
