@@ -7,13 +7,16 @@ st.set_page_config(page_title="해외 이슈 검색기", layout="wide")
 st.title("🌐 나만의 해외 이슈 검색기")
 st.caption("AI 공공정책 연구를 위한 실시간 해외 뉴스 요약 도구")
 
-# 왼쪽 사이드바에 API 키 입력창 만들기
-key = st.sidebar.text_input("Gemini API Key를 입력하세요", type="password")
+# 비밀 설정(Secrets)에서 키를 가져오고, 없으면 입력창을 띄웁니다.
+if "GEMINI_API_KEY" in st.secrets:
+    key = st.secrets["GEMINI_API_KEY"]
+else:
+    key = st.sidebar.text_input("Gemini API Key를 입력하세요", type="password")
 
 if key:
     try:
         client = genai.Client(api_key=key)
-        topic = st.text_input("검색 주제를 입력하세요", "해외 공공기관 AI 도입 우수 사례")
+        topic = st.text_input("검색 주제를 입력하세요", "해외 초등학교 AI 교육 사례")
         
         if st.button("뉴스 검색 시작"):
             with st.spinner('해외 데이터를 분석 중입니다...'):
@@ -39,3 +42,4 @@ import ssl # 추가!
 # 🌟 SSL 보안 인증서 확인을 건너뛰는 마법의 코드
 ssl._create_default_https_context = ssl._create_unverified_context
 os.environ['CURL_CA_BUNDLE'] = ''
+
